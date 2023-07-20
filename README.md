@@ -20,7 +20,7 @@ This is an example of how python structure in monorepo fashion, with the goal of
 
 * [Poetry](https://python-poetry.org/) ^1.5: (1.5.1 preferred)
 
-* Bash script for CI/CD builds, most convention was inherited from [FastAPI author](https://github.com/tiangolo/full-stack-fastapi-postgresql).
+* Bash script for CI/CD builds, most conventions was inherited from [author of FastAPI](https://github.com/tiangolo/full-stack-fastapi-postgresql).
 
 * Docker for containers.
 
