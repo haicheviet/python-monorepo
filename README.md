@@ -30,6 +30,42 @@ This setup also supports CI/CD workflows, ensuring that any modifications to sha
 
 Additionally, all the tooling is playing well with each other even in Docker container.
 
+
+# General installation and working guide
+**Note: poetry work best with fresh conda environment, please create new env for this project**
+
+To install the monorepo system, please read and follow these steps:
+
+1. Go to your project that you're working on, install environment and provide variable env if required
+
+```bash
+cd your/project/folder
+
+pip install poetry
+poetry install --with lint,test
+
+# If the .env_template is available [Optional]
+cp .env_template .env
+vim .env
+```
+
+2. Before create MR, format code and check lint with these steps
+
+```bash
+cd your/project/folder
+
+bash scripts/format.sh # Auto format code
+bash scripts/lint.sh # Lint check
+```
+
+3. Run test in local by simple command
+
+```bash
+cd your/project/folder
+
+pytest
+```
+
 # Note
 
 Most of this project was inspire by [dermidgen](https://github.com/dermidgen/python-monorepo) but I found the current methology is old and can not use poetry in Docker is really pain point. Here is the thing that I planning to enhance from original repo:
