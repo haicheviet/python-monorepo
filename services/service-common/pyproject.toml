@@ -1,19 +1,26 @@
 [tool.poetry]
-name = "telemetry"
+name = "service_common"
 version = "0"  # standard placeholder, will update dynamic when install service
 description = ""
 authors = ["Hai Che <cheviethai123@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
-opentelemetry-api = "1.19.0"
+telemetry = {path = "../../libs/telemetry"}
 
+
+[tool.poetry.dev-dependencies]
+telemetry = {path = "../../libs/telemetry", develop = true}
+
+
+### pytest setup ###
 [tool.poetry.group.test]
 optional = true
 
 [tool.poetry.group.test.dependencies]
 pytest = "6.2.2"
 pytest-cov = "4.0.0"
+httpx = "0.24.1"
 
 
 [tool.pytest.ini_options]
@@ -23,11 +30,15 @@ addopts = "--cov --cov-report term"
 testpaths = ["tests"]
 
 [tool.coverage.run]
-source = ["telemetry"]
+source = ["service_common"]
 omit = ["./venv/*", "*tests*", "*_Users_*"]
 
+[tool.coverage.report]
+exclude_lines = ["if __name__ == .__main__.:"]
+
 [tool.coverage.paths]
-source = ["telemetry"]
+source = ["service_common", "/tmp/service_common"]
+
 
 [tool.poetry.group.lint]
 optional = true
@@ -39,6 +50,7 @@ ruff = "0.0.278"
 
 [tool.mypy]
 strict = true
+ignore_missing_imports = true
 
 [tool.ruff]
 select = [
@@ -81,5 +93,5 @@ style = "pep440"
 
 
 [build-system]
-requires = ["poetry_core>=1.0.0"]
+requires = ["poetry_core>=1.0.0", "poetry-dynamic-versioning"]
 build-backend = "poetry.core.masonry.api"

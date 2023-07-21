@@ -1,12 +1,22 @@
 [tool.poetry]
-name = "telemetry"
+name = "ml"
 version = "0"  # standard placeholder, will update dynamic when install service
 description = ""
 authors = ["Hai Che <cheviethai123@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
-opentelemetry-api = "1.19.0"
+torch = {version = "2.0.1", source="torchcpu"}
+telemetry = {path = "../telemetry"}
+
+[tool.poetry.dev-dependencies]
+telemetry = {path = "../telemetry", develop = true} # for developing environment
+
+[[tool.poetry.source]]
+name = "torchcpu"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"
+
 
 [tool.poetry.group.test]
 optional = true
@@ -15,7 +25,6 @@ optional = true
 pytest = "6.2.2"
 pytest-cov = "4.0.0"
 
-
 [tool.pytest.ini_options]
 log_cli = true
 log_cli_level = "DEBUG"
@@ -23,14 +32,16 @@ addopts = "--cov --cov-report term"
 testpaths = ["tests"]
 
 [tool.coverage.run]
-source = ["telemetry"]
+source = ["ml"]
 omit = ["./venv/*", "*tests*", "*_Users_*"]
 
 [tool.coverage.paths]
-source = ["telemetry"]
+source = ["ml"] 
+
 
 [tool.poetry.group.lint]
 optional = true
+
 
 [tool.poetry.group.lint.dependencies]
 mypy = "1.4.1"
@@ -39,6 +50,7 @@ ruff = "0.0.278"
 
 [tool.mypy]
 strict = true
+ignore_missing_imports = true
 
 [tool.ruff]
 select = [
@@ -71,6 +83,9 @@ exclude = [
     "dist",
     "venv",
 ]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
 
 
 ### Versioning by git setup ###

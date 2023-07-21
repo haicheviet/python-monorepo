@@ -1,13 +1,15 @@
 [tool.poetry]
-name = "telemetry"
+name = "mq"
 version = "0"  # standard placeholder, will update dynamic when install service
 description = ""
 authors = ["Hai Che <cheviethai123@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
-opentelemetry-api = "1.19.0"
+pika = "1.3.2"
 
+
+### pytest setup ###
 [tool.poetry.group.test]
 optional = true
 
@@ -23,11 +25,11 @@ addopts = "--cov --cov-report term"
 testpaths = ["tests"]
 
 [tool.coverage.run]
-source = ["telemetry"]
+source = ["mq"]
 omit = ["./venv/*", "*tests*", "*_Users_*"]
 
 [tool.coverage.paths]
-source = ["telemetry"]
+source = ["mq"]
 
 [tool.poetry.group.lint]
 optional = true
