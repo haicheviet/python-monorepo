@@ -15,8 +15,8 @@ def test_main_api(client: TestClient):
     assert data["body"] == f"app version: {settings.VERSION}"
 
 
-@pytest.mark.parametrize(argnames=["a", "b", "expected_result"], argvalues=[(1, 2, 3)])
-def test_add_operator(client: TestClient, a, b, expected_result):
+@pytest.mark.parametrize(argnames=["a", "b", "expected_result"], argvalues=[(1., 2., 3.)])
+def test_add_operator(client: TestClient, a: float, b: float, expected_result: float):
     response = client.get(ADD_OPERATOR_URL, params={"a": a, "b": b})
     assert response.status_code == HTTPStatus.OK
     data = response.json()

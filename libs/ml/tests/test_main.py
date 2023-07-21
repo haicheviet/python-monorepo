@@ -8,9 +8,9 @@ from ml.core import call_telemetry_function, sum_two_tensor
 
 
 @pytest.mark.parametrize(
-    argnames=["a", "b", "expected_result"], argvalues=[(1, 2, 3), (0.1, 0.2, 0.3)]
+    argnames=["a", "b", "expected_result"], argvalues=[(1., 2., 3.), (0.1, 0.2, 0.3)]
 )
-def test_sum(a, b, expected_result):
+def test_sum(a: float, b: float, expected_result: float):
     a = torch.tensor(a)
     b = torch.tensor(b)
     expected_result = torch.tensor(expected_result)
