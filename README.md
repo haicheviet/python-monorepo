@@ -15,12 +15,12 @@ This is an example of how python structure in monorepo fashion, with the goal of
 
 # Note
 
-Most of this project was inspire by [dermidgen](https://github.com/dermidgen/python-monorepo) but I found the current methology is old and can not use poetry in Docker is really pain point. Here is the thing that I planning to enhance from original repo:
+This project drew significant inspiratd.ion from [dermidgen](https://github.com/dermidgen/python-monorepo). However, I discovered that the existing methodology is outdated and doesn't support the use of Poetry within Docker, which is a major let down in the Python ecosystem. Here are the improvements I plan to implement compared to the original repository:
 
-- Poetry playwell with docker build.
-- Format and lint for python project.
-- CI-CD in Docker that can share stage between libs.
-- Test and coverage page for whole repo including all subprojects.
+- Poetry playwell with docker container.
+- Automated formatting and linting for the Python project.
+- Docker-based CI/CD pipeline that allows sharing stages between libraries.
+- Test and coverage page for whole monorepo including all subprojects.
 
 ## Tooling
 
@@ -32,11 +32,11 @@ Most of this project was inspire by [dermidgen](https://github.com/dermidgen/pyt
 
 * Docker for containers.
 
-This example provides tooling that facilitates a local development approach, enabling immediate availability of changes to shared libraries while running and testing individual services.
+This example demonstrates a local development approach that allows quick access to changes in shared libraries during the development and testing of individual services.
 
-This setup also supports CI/CD workflows, ensuring that any modifications to shared libraries trigger the rebuilding and integration testing of dependent services without delay. Poetry plays a significant role in achieving this functionality.
+The tooling used enables seamless integration with CI/CD workflows, ensuring that any changes to shared libraries lead to automatic rebuilding and integration testing of dependent services without any delays. The key component contributing to this functionality is Poetry management.
 
-Additionally, all the tooling is playing well with each other even in Docker container.
+Furthermore, the entire toolset works harmoniously even within a Docker container, making it well-suited for containerized environments.
 
 
 # General installation and working guide
