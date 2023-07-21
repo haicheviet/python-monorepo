@@ -1,0 +1,94 @@
+[tool.poetry]
+name = "service_common"
+version = "0"  # standard placeholder, will update dynamic when install service
+description = ""
+authors = ["Hai Che <cheviethai123@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8.1"
+telemetry = {path = "../../libs/telemetry"}
+
+
+[tool.poetry.dev-dependencies]
+telemetry = {path = "../../libs/telemetry", develop = true}
+
+
+### pytest setup ###
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "6.2.2"
+pytest-cov = "4.0.0"
+httpx = "0.24.1"
+
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "DEBUG"
+addopts = "--cov --cov-report term"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["service_common"]
+omit = ["./venv/*", "*tests*", "*_Users_*"]
+
+[tool.coverage.paths]
+source = ["service_common", "/tmp/service_common"]
+
+
+[tool.poetry.group.lint]
+optional = true
+
+[tool.poetry.group.lint.dependencies]
+mypy = "1.4.1"
+black = "23.3.0"
+ruff = "0.0.278"
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+
+[tool.ruff]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    "__pypackages__",
+    "__pycache__",
+    "build",
+    "dist",
+    "venv",
+]
+
+
+### Versioning by git setup ###
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "pep440"
+
+
+[build-system]
+requires = ["poetry_core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry.core.masonry.api"

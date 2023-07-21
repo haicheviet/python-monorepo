@@ -1,0 +1,49 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+.ipynb_checkpoints
+**__pycache__**
+**.DS_Store**
+htmlcov
+.mypy_cache
+.coverage
+
+# Dynamic update version
+__version__.py
+
+# Compiled python modules.
+*.pyc
+
+
+# Setuptools distribution folder.
+dist
+
+# Python egg metadata, regenerated from source files by setuptools.
+*.egg-info
+build
+*.egg
+*.eggs
+*.pickle
+test.py
+.env
+*.zip
+
+*.png
+*.pth
+*.pt
+*.tfevents.*
+version*
+.vscode
+**/target
+
+*.json
+*.log
+*.pth
+*log*
+*.ipynb

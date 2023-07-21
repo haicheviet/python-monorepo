@@ -13,6 +13,14 @@ This is an example of how python structure in monorepo fashion, with the goal of
  - `Tooling`: for handling builds with shared libraries, CI-CD and Coverage Page.
 
 
+# Note
+
+Most of this project was inspire by [dermidgen](https://github.com/dermidgen/python-monorepo) but I found the current methology is old and can not use poetry in Docker is really pain point. Here is the thing that I planning to enhance from original repo:
+
+- Poetry playwell with docker build.
+- Format and lint for python project.
+- CI-CD in Docker that can share stage between libs.
+- Test and coverage page for whole repo including all subprojects.
 
 ## Tooling
 
@@ -20,7 +28,7 @@ This is an example of how python structure in monorepo fashion, with the goal of
 
 * [Poetry](https://python-poetry.org/) ^1.5: (1.5.1 preferred)
 
-* Bash script for CI/CD builds, most convention was inherited from [FastAPI author](https://github.com/tiangolo/full-stack-fastapi-postgresql).
+* Bash script for CI/CD builds, most conventions was inherited from [author of FastAPI](https://github.com/tiangolo/full-stack-fastapi-postgresql).
 
 * Docker for containers.
 
@@ -42,11 +50,7 @@ To install the monorepo system, please read and follow these steps:
 cd your/project/folder
 
 pip install poetry
-poetry install --with lint,test
-
-# If the .env_template is available [Optional]
-cp .env_template .env
-vim .env
+poetry install --with dev,lint,test # If you want to package the code, poetry install is enough
 ```
 
 2. Before create MR, format code and check lint with these steps
@@ -63,14 +67,6 @@ bash scripts/lint.sh # Lint check
 ```bash
 cd your/project/folder
 
-pytest
+bash scripts/test.sh
 ```
 
-# Note
-
-Most of this project was inspire by [dermidgen](https://github.com/dermidgen/python-monorepo) but I found the current methology is old and can not use poetry in Docker is really pain point. Here is the thing that I planning to enhance from original repo:
-
-- Poetry playwell with docker build.
-- Format and lint for python project.
-- CI-CD in Docker that can share stage between libs.
-- Coverage page for whole repo including all subprojects.
