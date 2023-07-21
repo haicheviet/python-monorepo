@@ -67,6 +67,6 @@ bash scripts/lint.sh # Lint check
 ```bash
 cd your/project/folder
 
-pytest
+bash scripts/test.sh
 ```
 
