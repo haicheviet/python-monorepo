@@ -42,9 +42,10 @@ ruff = "0.0.278"
 
 [tool.mypy]
 strict = true
+ignore_missing_imports = true
 
 [tool.ruff]
-line-length = 79
+line-length = 88
 select = [
     "E",  # pycodestyle errors
     "W",  # pycodestyle warnings
