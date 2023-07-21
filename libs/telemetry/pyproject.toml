@@ -36,19 +36,45 @@ source = ["telemetry", "/tmp/telemetry"] # /tmp for docker file generate test co
 optional = true
 
 [tool.poetry.group.lint.dependencies]
-black = "23.3.0"
-isort = "5.12.0"
-autoflake = "2.0.2"
-flake8 = "6.0.0"
 mypy = "1.4.1"
+black = "23.3.0"
+ruff = "0.0.278"
 
+[tool.mypy]
+strict = true
 
-[tool.isort]
-profile = "black"
-
-[tool.black]
-line-length = 79 # pep-8 default
-
+[tool.ruff]
+line-length = 79
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    "__pypackages__",
+    "__pycache__",
+    "build",
+    "dist",
+    "venv",
+]
 
 [build-system]
 requires = ["poetry_core>=1.0.0"]

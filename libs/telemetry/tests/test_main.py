@@ -4,7 +4,6 @@ from unittest import mock
 from telemetry.core import main
 
 
-
 @mock.patch('sys.stdout', new_callable=io.StringIO)
 def test_stdout(mock_stdout):
     main()

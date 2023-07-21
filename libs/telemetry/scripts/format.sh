@@ -1,7 +1,5 @@
 #!/bin/bash
-
 set -x
 
-autoflake --ignore-init-module-imports --remove-all-unused-imports --recursive --remove-unused-variables --in-place telemetry
+ruff telemetry --fix
 black telemetry
-isort telemetry
