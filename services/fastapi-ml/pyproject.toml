@@ -46,9 +46,6 @@ omit = ["./venv/*", "*tests*", "*_Users_*"]
 [tool.coverage.paths]
 source = ["app", "/tmp/app"]
 
-
-
-
 [tool.poetry.group.lint]
 optional = true
 
