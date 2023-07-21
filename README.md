@@ -13,6 +13,14 @@ This is an example of how python structure in monorepo fashion, with the goal of
  - `Tooling`: for handling builds with shared libraries, CI-CD and Coverage Page.
 
 
+# Note
+
+Most of this project was inspire by [dermidgen](https://github.com/dermidgen/python-monorepo) but I found the current methology is old and can not use poetry in Docker is really pain point. Here is the thing that I planning to enhance from original repo:
+
+- Poetry playwell with docker build.
+- Format and lint for python project.
+- CI-CD in Docker that can share stage between libs.
+- Test and coverage page for whole repo including all subprojects.
 
 ## Tooling
 
@@ -42,11 +50,7 @@ To install the monorepo system, please read and follow these steps:
 cd your/project/folder
 
 pip install poetry
-poetry install --with lint,test
-
-# If the .env_template is available [Optional]
-cp .env_template .env
-vim .env
+poetry install --with dev,lint,test # If you want to package the code, poetry install is enough
 ```
 
 2. Before create MR, format code and check lint with these steps
@@ -66,11 +70,3 @@ cd your/project/folder
 pytest
 ```
 
-# Note
-
-Most of this project was inspire by [dermidgen](https://github.com/dermidgen/python-monorepo) but I found the current methology is old and can not use poetry in Docker is really pain point. Here is the thing that I planning to enhance from original repo:
-
-- Poetry playwell with docker build.
-- Format and lint for python project.
-- CI-CD in Docker that can share stage between libs.
-- Coverage page for whole repo including all subprojects.
