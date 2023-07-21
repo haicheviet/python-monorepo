@@ -3,6 +3,8 @@ FROM python:3.8.16-slim-buster as base-img
 # Base working dir
 WORKDIR /app
 
+
+# This is the compile-image
 FROM base-img AS compile-image
 
 RUN apt-get update -qq && \
@@ -21,18 +23,17 @@ RUN curl -sSL https://install.python-poetry.org | POETRY_VERSION=1.5.1 POETRY_HO
     poetry config virtualenvs.prefer-active-python true
 
 # Install dependency
+ARG INSTALL_TEST=false
 COPY poetry.lock pyproject.toml ./
-RUN . /opt/venv/bin/activate && poetry install --no-root
+RUN . /opt/venv/bin/activate && if [ $INSTALL_TEST != 'false' ] ; then poetry install --no-directory --with test ; \
+    else poetry install --no-directory ; fi
 
 # Install package
-ADD telemetry ./
-ARG INSTALL_TEST=false
+ADD telemetry ./telemetry
+RUN poetry build && pip install dist/*.tar.gz 
 
-RUN . /opt/venv/bin/activate && if [ $INSTALL_TEST != 'false' ] ; then poetry install --with test ; \
-    else poetry install --only main ; fi
-
-RUN . /opt/venv/bin/activate && python -c "import telemetry"
-
+# This is the second and final image; it copies the compiled
+# python package over but starts from the base image.
 FROM base-img as runtime-image
 
 COPY --from=compile-image /opt/venv /opt/venv

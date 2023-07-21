@@ -8,7 +8,7 @@ authors = ["Hai Che <cheviethai123@gmail.com>"]
 python = "^3.8.1"
 opentelemetry-api = "1.19.0"
 
-# pytest setup
+### pytest setup ###
 [tool.poetry.group.test]
 optional = true
 
@@ -31,7 +31,7 @@ omit = ["./venv/*", "*tests*", "*_Users_*"]
 source = ["telemetry", "/tmp/telemetry"] # /tmp for docker file generate test coverage
 
 
-# pylint setup
+### pylint setup ###
 [tool.poetry.group.lint]
 optional = true
 
@@ -47,14 +47,14 @@ mypy = "1.4.1"
 profile = "black"
 
 [tool.black]
-line-length = 79 # Pep8 default
+line-length = 79 # pep-8 default
 
 
-# Versioning as git commmit sha
 [build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
-build-backend = "poetry_dynamic_versioning.backend"
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
+### Versioning by git setup ###
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
