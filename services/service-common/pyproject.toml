@@ -33,9 +33,6 @@ testpaths = ["tests"]
 source = ["service_common"]
 omit = ["./venv/*", "*tests*", "*_Users_*"]
 
-[tool.coverage.report]
-exclude_lines = ["if __name__ == .__main__.:"]
-
 [tool.coverage.paths]
 source = ["service_common", "/tmp/service_common"]
 
