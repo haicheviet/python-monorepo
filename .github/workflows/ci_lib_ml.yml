@@ -19,5 +19,6 @@ jobs:
     with:
       working-directory: libs/ml
       requirement-file: libs/ml/poetry.lock
+      cov-flag: ml
     secrets: inherit
       

@@ -19,5 +19,6 @@ jobs:
     with:
       working-directory: libs/telemetry
       requirement-file: libs/telemetry/poetry.lock
+      cov-flag: telemetry
     secrets: inherit
       

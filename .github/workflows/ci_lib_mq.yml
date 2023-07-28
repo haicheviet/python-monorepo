@@ -19,5 +19,6 @@ jobs:
     with:
       working-directory: libs/mq
       requirement-file: libs/mq/poetry.lock
+      cov-flag: mq
     secrets: inherit
       
