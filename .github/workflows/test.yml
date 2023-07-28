@@ -80,10 +80,10 @@ jobs:
       - name: Test
         run: poetry run bash scripts/test.sh
       - run: ls -a
-      - name: Store coverage files
-        uses: actions/cache@v3
+      - uses: actions/cache@v3
+        name: Get coverage files
         with:
-          key: coverage
+          key: coverage-${{ github.sha }}
           path: ${{ inputs.working-directory }}/.coverage
 
   coverage-combine:
@@ -97,11 +97,11 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.8'
-      - name: Get coverage files
-        uses: actions/cache@v3
-          with:
-            key: coverage
-            path: ${{ inputs.working-directory }}/.coverage
+      - uses: actions/cache@v3
+        name: Get coverage files
+        with:
+          key: coverage-${{ github.sha }}
+          path: ${{ inputs.working-directory }}/.coverage
       - run: pip install coverage[toml]
       - run: ls -la .coverage
       - run: coverage report
