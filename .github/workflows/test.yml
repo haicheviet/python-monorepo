@@ -42,7 +42,7 @@ jobs:
         name: Define a cache for the virtual environment based on the dependencies lock file
         with:
           path: ${{ inputs.working-directory }}/.venv
-          key: venv-${{ hashFiles(inputs.requirement-file) }}
+          key: venv-lint-${{ hashFiles(inputs.requirement-file) }}
       - name: Install the lint dependencies
         run: poetry install --only lint
       - name: Lint
@@ -74,14 +74,14 @@ jobs:
         name: Define a cache for the virtual environment based on the dependencies lock file
         with:
           path: ${{ inputs.working-directory }}/.venv
-          key: venv-${{ hashFiles(inputs.requirement-file) }}
+          key: venv-test-${{ hashFiles(inputs.requirement-file) }}
       - name: Install the project dependencies
         run: poetry install --with test
       - name: Test
         run: poetry run bash scripts/test.sh
       - run: ls -a
       - uses: actions/cache@v3
-        name: Get coverage files
+        name: push coverage files
         with:
           key: coverage-${{ github.sha }}
           path: ${{ inputs.working-directory }}/.coverage
@@ -104,6 +104,8 @@ jobs:
           path: ${{ inputs.working-directory }}/.coverage
       - run: pip install coverage[toml]
       - run: ls -la .coverage
+      - name: Upload coverage reports to Codecov with GitHub Action
+        uses: codecov/codecov-action@v3
       - run: coverage report
       - run: coverage html --show-contexts --title "Coverage for ${{ github.sha }}"
       - name: Store coverage HTML
