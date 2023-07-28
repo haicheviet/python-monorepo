@@ -32,7 +32,6 @@ jobs:
           poetry-version: "1.5.1"
       - name: Setup a local virtual environment
         run: |
-          poetry config virtualenvs.create true --local
           poetry config virtualenvs.in-project true --local
       - uses: actions/cache@v3
         name: Define a cache for the virtual environment based on the dependencies lock file
@@ -42,7 +41,7 @@ jobs:
       - name: Install the lint dependencies
         run: poetry install --only lint
       - name: Lint
-        run: bash scripts/lint.sh
+        run: poetry run bash scripts/lint.sh
 
   test:
     needs: [lint]
