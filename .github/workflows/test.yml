@@ -81,9 +81,9 @@ jobs:
         run: poetry run bash scripts/test.sh
       - run: ls -a
       - name: Store coverage files
-        uses: actions/upload-artifact@v3
+        uses: actions/cache@v3
         with:
-          name: coverage
+          key: coverage
           path: ${{ inputs.working-directory }}/.coverage
 
   coverage-combine:
@@ -98,10 +98,10 @@ jobs:
         with:
           python-version: '3.8'
       - name: Get coverage files
-        uses: actions/download-artifact@v3
-        with:
-          name: coverage
-          path: ${{ inputs.working-directory }}/.coverage
+        uses: actions/cache@v3
+          with:
+            key: coverage
+            path: ${{ inputs.working-directory }}/.coverage
       - run: pip install coverage[toml]
       - run: ls -la .coverage
       - run: coverage report
