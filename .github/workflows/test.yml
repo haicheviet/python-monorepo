@@ -89,9 +89,7 @@ jobs:
   coverage-combine:
     needs: [test]
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ inputs.working-directory }}
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -102,7 +100,7 @@ jobs:
         with:
           key: coverage-${{ github.sha }}
           path: ${{ inputs.working-directory }}/.coverage
-      - run: pip install coverage[toml]
+      - run: bash scripts/cov-html.sh
       - run: coverage xml -o coverage.xml
       - name: Upload coverage reports to Codecov with GitHub Action
         uses: codecov/codecov-action@v3
