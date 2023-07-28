@@ -75,6 +75,7 @@ jobs:
         run: poetry install --with test
       - name: Test
         run: poetry run bash scripts/test.sh
+      - run: ls
       - name: Store coverage files
         uses: actions/upload-artifact@v3
         with:
