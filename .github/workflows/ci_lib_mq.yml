@@ -1,0 +1,24 @@
+---
+name: CI libs/mq
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/test.yml'
+      - '.github/workflows/ci_lib_mq.yml'
+      - 'libs/mq/**'
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allows to trigger the workflow manually in GitHub UI
+
+jobs:
+  ci-lib-mq:
+    uses:
+      ./.github/workflows/test.yml
+    with:
+      working-directory: libs/mq
+      requirement-file: libs/mq/poetry.lock
+      cov-flag: mq
+    secrets: inherit
+      

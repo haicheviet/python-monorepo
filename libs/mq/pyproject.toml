@@ -41,6 +41,7 @@ ruff = "0.0.278"
 
 [tool.mypy]
 strict = true
+ignore_missing_imports = true
 
 [tool.ruff]
 select = [

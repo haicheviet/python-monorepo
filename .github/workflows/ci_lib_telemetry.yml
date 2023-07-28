@@ -1,0 +1,24 @@
+---
+name: CI libs/telemetry
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/test.yml'
+      - '.github/workflows/ci_lib_telemetry.yml'
+      - 'libs/telemetry/**'
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allows to trigger the workflow manually in GitHub UI
+
+jobs:
+  ci-lib-telemetry:
+    uses:
+      ./.github/workflows/test.yml
+    with:
+      working-directory: libs/telemetry
+      requirement-file: libs/telemetry/poetry.lock
+      cov-flag: telemetry
+    secrets: inherit
+      
