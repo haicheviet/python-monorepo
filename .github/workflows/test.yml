@@ -17,8 +17,6 @@ on:
         description: "The timeout of the ci job. Default is 25min"
         default: 25
         type: number
-env:
-
 
 jobs:
   lint:
