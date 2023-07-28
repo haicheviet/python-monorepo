@@ -7,12 +7,18 @@ on:
         required: true
         type: string
         description: "From which folder this pipeline executes"
+      requirement_file:
+        required: true
+        type: string
+        description: "File to hashed install dependency"
       ci-timeout:
         # To avoid being billed 360 minutes if a step does not terminate
         # (we've seen the setup-python step below do so!)
         description: "The timeout of the ci job. Default is 25min"
         default: 25
         type: number
+env:
+
 
 jobs:
   lint:
@@ -38,7 +44,7 @@ jobs:
         name: Define a cache for the virtual environment based on the dependencies lock file
         with:
           path: ${{ inputs.working-directory }}/.venv
-          key: venv-${{ hashFiles(inputs.working-directory + '/poetry.lock') }}
+          key: venv-${{ hashFiles(inputs.requirement_file) }}
       - name: Install the lint dependencies
         run: poetry install --only lint
       - name: Lint

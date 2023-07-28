@@ -10,9 +10,11 @@ on:
   workflow_dispatch:  # Allows to trigger the workflow manually in GitHub UI
 
 jobs:
-  ci-libs-base:
+  ci-lib-ml:
     uses:
       ./.github/workflows/test.yml
     with:
       working-directory: libs/ml
+      requirement_file: libs/ml/poetry.lock
     secrets: inherit
+      
