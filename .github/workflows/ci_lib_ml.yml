@@ -15,6 +15,6 @@ jobs:
       ./.github/workflows/test.yml
     with:
       working-directory: libs/ml
-      requirement_file: libs/ml/poetry.lock
+      requirement-file: libs/ml/poetry.lock
     secrets: inherit
       
