@@ -100,6 +100,7 @@ jobs:
         with:
           key: coverage-${{ github.sha }}
           path: ${{ inputs.working-directory }}/.coverage
+      - run: pip install coverage[toml]
       - run: bash scripts/cov-html.sh
       - run: coverage xml -o coverage.xml
       - name: Upload coverage reports to Codecov with GitHub Action
