@@ -47,8 +47,8 @@ jobs:
   test:
     needs: [lint]
     runs-on: ubuntu-latest
-    environment:
-      name: approvers
+    # environment:
+    #   name: approvers
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}
