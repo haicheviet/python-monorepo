@@ -77,7 +77,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: coverage
-          path: coverage
+          path: .coverage
 
   coverage-combine:
     needs: [test]
@@ -87,17 +87,14 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.8'
-          # Issue ref: https://github.com/actions/setup-python/issues/436
-          # cache: "pip"
-          # cache-dependency-path: pyproject.toml
       - name: Get coverage files
         uses: actions/download-artifact@v3
         with:
           name: coverage
-          path: coverage
+          path: .coverage
       - run: pip install coverage[toml]
-      - run: ls -la coverage
-      - run: coverage combine coverage
+      - run: ls -la .coverage
+      - run: coverage combine .coverage
       - run: coverage report
       - run: coverage html --show-contexts --title "Coverage for ${{ github.sha }}"
       - name: Store coverage HTML
