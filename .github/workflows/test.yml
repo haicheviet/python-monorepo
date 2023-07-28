@@ -38,7 +38,7 @@ jobs:
         name: Define a cache for the virtual environment based on the dependencies lock file
         with:
           path: ${{ inputs.working-directory }}/.venv
-          key: venv-${{ hashFiles('poetry.lock') }}
+          key: venv-${{ hashFiles(inputs.working-directory + '/poetry.lock') }}
       - name: Install the lint dependencies
         run: poetry install --only lint
       - name: Lint
@@ -70,7 +70,7 @@ jobs:
         name: Define a cache for the virtual environment based on the dependencies lock file
         with:
           path: ${{ inputs.working-directory }}/.venv
-          key: venv-${{ hashFiles('poetry.lock') }}
+          key: venv-${{ hashFiles(inputs.working-directory + '/poetry.lock') }}
       - name: Install the project dependencies
         run: poetry install --with test
       - name: Test
@@ -100,7 +100,6 @@ jobs:
           path: ${{ inputs.working-directory }}/.coverage
       - run: pip install coverage[toml]
       - run: ls -la .coverage
-      - run: coverage combine .coverage
       - run: coverage report
       - run: coverage html --show-contexts --title "Coverage for ${{ github.sha }}"
       - name: Store coverage HTML
