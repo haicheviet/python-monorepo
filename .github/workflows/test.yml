@@ -109,4 +109,4 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-          working-directory: ${{ inputs.working-directory }}
+          directory: ${{ inputs.working-directory }}
