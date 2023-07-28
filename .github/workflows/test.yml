@@ -7,7 +7,7 @@ on:
         required: true
         type: string
         description: "From which folder this pipeline executes"
-      requirement_file:
+      requirement-file:
         required: true
         type: string
         description: "File to hashed install dependency"
@@ -44,7 +44,7 @@ jobs:
         name: Define a cache for the virtual environment based on the dependencies lock file
         with:
           path: ${{ inputs.working-directory }}/.venv
-          key: venv-${{ hashFiles(inputs.requirement_file) }}
+          key: venv-${{ hashFiles(inputs.requirement-file) }}
       - name: Install the lint dependencies
         run: poetry install --only lint
       - name: Lint
@@ -76,7 +76,7 @@ jobs:
         name: Define a cache for the virtual environment based on the dependencies lock file
         with:
           path: ${{ inputs.working-directory }}/.venv
-          key: venv-${{ hashFiles(inputs.working-directory + '/poetry.lock') }}
+          key: venv-${{ hashFiles(inputs.requirement-file) }}
       - name: Install the project dependencies
         run: poetry install --with test
       - name: Test
