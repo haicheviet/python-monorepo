@@ -69,6 +69,7 @@ jobs:
         run: |
           DOCKER_IMAGE=ghcr.io/${{ github.repository_owner }}/${{ inputs.project-flag }}
           DOCKER_IMAGE=$(echo $DOCKER_IMAGE | tr '[A-Z]' '[a-z]')
+
           TAG=${{ steps.extract_branch.outputs.branch }}
           TAG=${TAG//\//\-}
 

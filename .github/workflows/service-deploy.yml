@@ -37,4 +37,4 @@ jobs:
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && TAG=$(echo $TAG | sed -e 's/^v//')
           [ "$TAG" == "main" ] && TAG=latest
 
-          bash scripts/build-push.sh
+          TAG=$TAG DOCKER_IMAGE=$DOCKER_IMAGE bash scripts/build-push.sh
