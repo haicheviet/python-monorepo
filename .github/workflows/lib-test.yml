@@ -1,0 +1,117 @@
+name: Test
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        required: true
+        type: string
+        description: "From which folder this pipeline executes"
+      project-flag:
+        required: true
+        type: string
+        description: "Flag for coverage report"
+      requirement-file:
+        required: true
+        type: string
+        description: "File to hashed install dependency"
+      ci-timeout:
+        # To avoid being billed 360 minutes if a step does not terminate
+        # (we've seen the setup-python step below do so!)
+        description: "The timeout of the ci job. Default is 25min"
+        default: 25
+        type: number
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: "1.5.1"
+      - name: Setup a local virtual environment
+        run: |
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+      - uses: actions/cache@v3
+        name: Define a cache for the virtual environment based on the dependencies lock file
+        with:
+          path: ${{ inputs.working-directory }}/.venv
+          key: venv-lint-${{ hashFiles(inputs.requirement-file) }}
+      - name: Install the lint dependencies
+        run: poetry install --no-root --only lint
+      - name: Lint
+        run: poetry run bash scripts/lint.sh
+
+  test:
+    needs: [lint]
+    runs-on: ubuntu-latest
+    # environment:
+    #   name: approvers
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: "1.5.1"
+      - name: Setup a local virtual environment
+        run: |
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+      - uses: actions/cache@v3
+        name: Define a cache for the virtual environment based on the dependencies lock file
+        with:
+          path: ${{ inputs.working-directory }}/.venv
+          key: venv-test-${{ hashFiles(inputs.requirement-file) }}
+      - name: Install the project dependencies
+        run: poetry install --with test
+      - name: Test
+        run: poetry run bash scripts/test.sh
+      - run: ls -a
+      - uses: actions/cache@v3
+        name: push coverage files
+        with:
+          key: coverage-${{ github.sha }}
+          path: ${{ inputs.working-directory }}/.coverage
+
+  coverage-combine:
+    needs: [test]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+      - uses: actions/cache@v3
+        name: Get coverage files
+        with:
+          key: coverage-${{ github.sha }}
+          path: ${{ inputs.working-directory }}/.coverage
+      - run: pip install coverage[toml]
+      - run: coverage xml -o coverage.xml
+      - name: Upload coverage reports to Codecov with GitHub Action
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          flags: ${{ inputs.project-flag }}
+          files: ${{ inputs.working-directory }}/coverage.xml

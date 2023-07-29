@@ -1,3 +1,12 @@
+
+[![codecov](https://codecov.io/gh/haicheviet/python-monorepo/branch/main/graph/badge.svg?token=CIL7TY34M9)](https://codecov.io/gh/haicheviet/python-monorepo)
+
+| Package      | Status | Coverage Page |
+|------------- | ------ | ------------- |
+|[libs/ml](https://github.com/haicheviet/python-monorepo/tree/main/libs/ml)| [![CI libs/ml](https://github.com/haicheviet/python-monorepo/actions/workflows/ci_lib_ml.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci_lib_ml.yml) | [ml.coverage](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Fml%2Fml) |
+|[libs/mq](https://github.com/haicheviet/python-monorepo/tree/main/libs/mq)| [![CI libs/mq](https://github.com/haicheviet/python-monorepo/actions/workflows/ci_lib_mq.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci_lib_ml.yml) | [mq.coverage](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Fmq%2Fmq) |
+|[libs/telemetry](https://github.com/haicheviet/python-monorepo/tree/main/libs/mq)| [![CI libs/telemetry](https://github.com/haicheviet/python-monorepo/actions/workflows/ci_lib_telemetry.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci_lib_ml.yml) | [telemetry.coverage](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Ftelemetry%2Ftelemetry) |
+
 # Python Monorepo
 
 This is an example of how python structure in monorepo fashion, with the goal of demonstrating:
@@ -10,12 +19,12 @@ This is an example of how python structure in monorepo fashion, with the goal of
 
 - `Good practice`: A monorepo requires teams to work with each other. By merging code only with a MR, teams review each other’s code which breaks silos and improves code quality.
 
- - `Tooling`: for handling builds with shared libraries, CI-CD and Coverage Page.
+ - `Tooling required`: for handling builds with shared libraries, CI-CD and Coverage Page.
 
 
 # Note
 
-This project drew significant inspiratd.ion from [dermidgen](https://github.com/dermidgen/python-monorepo). However, I discovered that the existing methodology is outdated and doesn't support the use of Poetry within Docker, which is a major let down in the Python ecosystem. Here are the improvements I plan to implement compared to the original repository:
+This project drew significant inspiration from [dermidgen](https://github.com/dermidgen/python-monorepo). However, I discovered that the existing methodology is outdated and doesn't support the use of Poetry within Docker, which is a major let down in the Python ecosystem. Here are the improvements I plan to implement compared to the original repository:
 
 - Poetry playwell with docker container.
 - Automated formatting and linting for the Python project.
