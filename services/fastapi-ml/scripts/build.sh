@@ -21,9 +21,6 @@ DOCKER_BUILDKIT=0 docker build --file Dockerfile \
        --target compile-image \
        --label git-commit=$CI_COMMIT_SHORT_SHA \
        --build-arg INSTALL_TEST="$INSTALL_TEST" \
-       --build-context telemetry=../../libs/telemetry \
-       --build-context ml=../../libs/ml \
-       --build-context mq=../../libs/mq \
        --cache-from $DOCKER_IMAGE:compile-stage-$TAG_LATEST \
        --tag $DOCKER_IMAGE:compile-stage-$TAG .
 
