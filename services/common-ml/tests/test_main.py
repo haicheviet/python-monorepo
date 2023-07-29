@@ -1,7 +1,7 @@
 import io
 from unittest import mock
 
-from service_common.main import main
+from src.main import main
 import runpy
 
 
@@ -12,6 +12,6 @@ def test_stdout(mock_stdout):
 
 @mock.patch("sys.stdout", new_callable=io.StringIO)
 def test_execute_file(mock_stdout):
-    runpy._run_module_as_main("service_common.main")
+    runpy._run_module_as_main("src.main")
     assert mock_stdout.getvalue().strip() == "Go for opentelemetry"
 

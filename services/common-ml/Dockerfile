@@ -30,7 +30,7 @@ RUN . /opt/venv/bin/activate && if [ $INSTALL_TEST != 'false' ] ; then poetry in
     else poetry install --no-root --only main ; fi
 
 # Install service
-ADD service_common ./service_common
+ADD src ./src
 RUN poetry build && pip install dist/*.tar.gz --no-deps
 
 # This is the second and final image; it copies the compiled

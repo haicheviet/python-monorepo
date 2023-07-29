@@ -1,25 +1,25 @@
 
-[![codecov](https://codecov.io/gh/haicheviet/python-monorepo/branch/main/graph/badge.svg?token=CIL7TY34M9)](https://codecov.io/gh/haicheviet/python-monorepo)
+[![codecov](https://codecov.io/gh/haicheviet/python-monorepo/branch/main/graph/badge.svg)](https://codecov.io/gh/haicheviet/python-monorepo)
 
-| Package      | Status | Coverage Page |
-|------------- | ------ | ------------- |
-|[libs/ml](https://github.com/haicheviet/python-monorepo/tree/main/libs/ml)| [![CI libs/ml](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-ml.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-ml.yml) | [ml.coverage](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Fml%2Fml) |
-|[libs/mq](https://github.com/haicheviet/python-monorepo/tree/main/libs/mq)| [![CI libs/mq](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-mq.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-mq.yml) | [mq.coverage](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Fmq%2Fmq) |
-|[libs/telemetry](https://github.com/haicheviet/python-monorepo/tree/main/libs/mq)| [![CI libs/telemetry](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-telemetry.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-telemetry.yml) | [telemetry.coverage](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Ftelemetry%2Ftelemetry) |
+| Package      | Pipeline Status | Coverage Status | Deploy Status |
+|------------- | ------ | ------------- | ------------- |
+|[libs/ml](https://github.com/haicheviet/python-monorepo/tree/main/libs/ml)| [![CI libs/ml](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-ml.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-ml.yml) | [![ml.coverage](https://codecov.io/gh/haicheviet/python-monorepo/branch/main/graph/badge.svg?flag=ml)](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Fml%2Fml) | |
+|[libs/mq](https://github.com/haicheviet/python-monorepo/tree/main/libs/mq)| [![CI libs/mq](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-mq.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-mq.yml) | [![mq.coverage](https://codecov.io/gh/haicheviet/python-monorepo/branch/main/graph/badge.svg?flag=mq)](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Fmq%2Fmq)| |
+|[libs/telemetry](https://github.com/haicheviet/python-monorepo/tree/main/libs/telemetry)|[![CI libs/telemetry](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-telemetry.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-telemetry.yml) | [![telemetry.coverage](https://codecov.io/gh/haicheviet/python-monorepo/branch/main/graph/badge.svg?flag=telemetry)](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Ftelemetry%2Ftelemetry) | |
 
 # Python Monorepo
 
 This is an example of how python structure in monorepo fashion, with the goal of demonstrating:
 
- - `Scopes`: The folders act as scopes to make sure code artifacts are only visible when they should be. This allows to extract common tasks (e.g. building a C# solution) quickly and maintainers can easier reason about where the error lies.
+* `Scopes`: The folders act as scopes to make sure code artifacts are only visible when they should be. This allows to extract common tasks (e.g. building a C# solution) quickly and maintainers can easier reason about where the error lies.
 
- - `The One Version Rule (Atomic Commits)`. The principle guarantee that you can commit atomically to both of related projects simultaneously. There is no view of the repository where Project A is at Commit #1 but Project B is at Commit #2.
+* `The One Version Rule (Atomic Commits)`. The principle guarantee that you can commit atomically to both of related projects simultaneously. There is no view of the repository where Project A is at Commit #1 but Project B is at Commit #2.
 
- - `Big pictures`: With everything in one place there is no need to copy code between repositories or to look for infrastructure as code files and documentation.
+* `Big pictures`: With everything in one place there is no need to copy code between repositories or to look for infrastructure as code files and documentation.
 
-- `Good practice`: A monorepo requires teams to work with each other. By merging code only with a MR, teams review each other’s code which breaks silos and improves code quality.
+* `Good practice`: A monorepo requires teams to work with each other. By merging code only with a MR, teams review each other’s code which breaks silos and improves code quality.
 
- - `Tooling required`: for handling builds with shared libraries, CI-CD and Coverage Page.
+* `Tooling required`: for handling builds with shared libraries, CI-CD and Coverage Page.
 
 
 # Note

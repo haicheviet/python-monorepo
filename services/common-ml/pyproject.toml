@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "service_common"
+name = "src"
 version = "0"  # standard placeholder, will update dynamic when install service
 description = ""
 authors = ["Hai Che <cheviethai123@gmail.com>"]
@@ -30,11 +30,11 @@ addopts = "--cov --cov-report term"
 testpaths = ["tests"]
 
 [tool.coverage.run]
-source = ["service_common"]
+source = ["src"]
 omit = ["./venv/*", "*tests*", "*_Users_*"]
 
 [tool.coverage.paths]
-source = ["service_common", "/tmp/service_common"]
+source = ["src", "/tmp/src"]
 
 
 [tool.poetry.group.lint]

@@ -17,37 +17,37 @@ on:
         description: "File to hashed install dependency"
 
 jobs:
-  # lint:
-  #   runs-on: ubuntu-latest
-  #   defaults:
-  #     run:
-  #       working-directory: ${{ inputs.working-directory }}
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Set up Python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: "3.8"
-  #     - name: Install poetry
-  #       uses: abatilo/actions-poetry@v2
-  #       with:
-  #         poetry-version: "1.5.1"
-  #     - name: Setup a local virtual environment
-  #       run: |
-  #         poetry config virtualenvs.create true --local
-  #         poetry config virtualenvs.in-project true --local
-  #     - uses: actions/cache@v3
-  #       name: Define a cache for the virtual environment based on the dependencies lock file
-  #       with:
-  #         path: ${{ inputs.working-directory }}/.venv
-  #         key: venv-lint-${{ hashFiles(inputs.requirement-file) }}
-  #     - name: Install the lint dependencies
-  #       run: poetry install --only lint
-  #     - name: Lint
-  #       run: poetry run bash scripts/lint.sh
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: "1.5.1"
+      - name: Setup a local virtual environment
+        run: |
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+      - uses: actions/cache@v3
+        name: Define a cache for the virtual environment based on the dependencies lock file
+        with:
+          path: ${{ inputs.working-directory }}/.venv
+          key: venv-lint-${{ hashFiles(inputs.requirement-file) }}
+      - name: Install the lint dependencies
+        run: poetry install --only lint
+      - name: Lint
+        run: poetry run bash scripts/lint.sh
 
   test:
-    # needs: [lint]
+    needs: [lint]
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -63,15 +63,14 @@ jobs:
         shell: bash
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}//\//\-}" >> $GITHUB_OUTPUT
         id: extract_branch
-      - run: docker version
-      - name: Build, test and tag branch image to github docker registery
+      - name: Build, test and push cache image to github docker registery
         env:
           TAG: ${{ github.sha }}
         run: |
           DOCKER_IMAGE=ghcr.io/${{ github.repository_owner }}/${{ inputs.project-flag }}
+          DOCKER_IMAGE=$(echo $DOCKER_IMAGE | tr '[A-Z]' '[a-z]')
           TAG=${{ steps.extract_branch.outputs.branch }}
           TAG=${TAG//\//\-}
-          echo $TAG $DOCKER_IMAGE
 
           TAG=$TAG DOCKER_IMAGE=$DOCKER_IMAGE bash scripts/test-push.sh
       - uses: actions/cache@v3
