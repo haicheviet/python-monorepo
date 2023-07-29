@@ -48,7 +48,7 @@ jobs:
           path: ${{ inputs.working-directory }}/.venv
           key: venv-lint-${{ hashFiles(inputs.requirement-file) }}
       - name: Install the lint dependencies
-        run: poetry install --only lint
+        run: poetry install --no-root --only lint
       - name: Lint
         run: poetry run bash scripts/lint.sh
 

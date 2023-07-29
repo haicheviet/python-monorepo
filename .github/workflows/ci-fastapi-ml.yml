@@ -6,8 +6,8 @@ on:
     paths:
       - '.github/workflows/service-test.yml'
       - '.github/workflows/ci-fastapi-ml.yml'
-      - 'libs/*' # Dependency change
-      - 'services/fastapi-ml/*'
+      - 'libs/**' # Dependency change
+      - 'services/fastapi-ml/**'
   push:
     branches:
       - main
