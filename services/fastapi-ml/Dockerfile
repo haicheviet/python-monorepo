@@ -1,3 +1,4 @@
+# Fix this issue: https://github.com/docker/buildx/issues/1124 in github action with below command
 # syntax=docker/dockerfile:1
 
 FROM python:3.8.16-slim-buster as base-img
