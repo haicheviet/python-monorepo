@@ -5,7 +5,6 @@ DOCKER_IMAGE=${DOCKER_IMAGE}
 TAG=${TAG:=latest}
 INSTALL_TEST=${INSTALL_TEST:=false}
 
-
 # Get latest image to reuse compile stage
 if [ "$(docker images -q $DOCKER_IMAGE:compile-stage-$TAG 2>/dev/null)" != "" ]; then
        TAG_LATEST=$TAG
@@ -14,7 +13,6 @@ else
        docker pull $DOCKER_IMAGE:compile-stage-$TAG_LATEST || true
        echo "Get latest img"
 fi
-
 
 # Build the compile stage:
 docker buildx build --file Dockerfile \
