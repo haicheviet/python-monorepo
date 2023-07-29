@@ -20,6 +20,7 @@ docker buildx build --file Dockerfile \
        --target compile-image \
        --label git-commit=$CI_COMMIT_SHORT_SHA \
        --build-arg INSTALL_TEST="$INSTALL_TEST" \
+       --build-arg BUILDKIT_INLINE_CACHE=1 \
        --build-context telemetry=../../libs/telemetry \
        --build-context ml=../../libs/ml \
        --build-context mq=../../libs/mq \
@@ -32,6 +33,7 @@ docker buildx build --file Dockerfile \
        --target runtime-image \
        --label git-commit=$CI_COMMIT_SHORT_SHA \
        --build-arg INSTALL_TEST="$INSTALL_TEST" \
+       --build-arg BUILDKIT_INLINE_CACHE=1 \
        --build-context telemetry=../../libs/telemetry \
        --build-context ml=../../libs/ml \
        --build-context mq=../../libs/mq \

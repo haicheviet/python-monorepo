@@ -20,6 +20,7 @@ docker buildx build --file Dockerfile \
        --target compile-image \
        --label git-commit=$CI_COMMIT_SHORT_SHA \
        --build-arg INSTALL_TEST="$INSTALL_TEST" \
+       --build-arg BUILDKIT_INLINE_CACHE=1 \
        --build-context telemetry=../../libs/telemetry \
        --cache-from $DOCKER_IMAGE:compile-stage-$TAG_LATEST \
        --tag $DOCKER_IMAGE:compile-stage-$TAG .
@@ -30,6 +31,7 @@ docker buildx build --file Dockerfile \
        --target runtime-image \
        --label git-commit=$CI_COMMIT_SHORT_SHA \
        --build-arg INSTALL_TEST="$INSTALL_TEST" \
+       --build-arg BUILDKIT_INLINE_CACHE=1 \
        --build-context telemetry=../../libs/telemetry \
        --cache-from $DOCKER_IMAGE:compile-stage-$TAG \
        --cache-from $DOCKER_IMAGE:$TAG \
