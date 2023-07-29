@@ -55,6 +55,9 @@ black = "23.3.0"
 ruff = "0.0.278"
 
 [tool.mypy]
+strict = true
+allow_subclassing_any = true
+allow_untyped_decorators = true
 ignore_missing_imports = true
 
 [tool.ruff]

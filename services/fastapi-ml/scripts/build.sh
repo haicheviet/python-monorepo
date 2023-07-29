@@ -17,7 +17,7 @@ fi
 
 
 # Build the compile stage:
-docker buildx build --file Dockerfile \
+DOCKER_BUILDKIT=0 docker build --file Dockerfile \
        --target compile-image \
        --label git-commit=$CI_COMMIT_SHORT_SHA \
        --build-arg INSTALL_TEST="$INSTALL_TEST" \
@@ -29,7 +29,7 @@ docker buildx build --file Dockerfile \
 
 
 # Build the runtime stage, using cached compile stage:
-docker buildx build --file Dockerfile \
+docker build --file Dockerfile \
        --target runtime-image \
        --label git-commit=$CI_COMMIT_SHORT_SHA \
        --build-arg INSTALL_TEST="$INSTALL_TEST" \
