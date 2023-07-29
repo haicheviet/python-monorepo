@@ -25,7 +25,7 @@ docker buildx build --file Dockerfile \
        --build-context ml=../../libs/ml \
        --build-context mq=../../libs/mq \
        --cache-from $DOCKER_IMAGE:compile-stage-$TAG_LATEST \
-       --tag $DOCKER_IMAGE:compile-stage-$TAG .
+       --tag $DOCKER_IMAGE:compile-stage-$TAG -f Dockerfile .
 
 
 # Build the runtime stage, using cached compile stage:
