@@ -4,8 +4,8 @@ name: CI libs/ml
 on:
   pull_request:
     paths:
-      - '.github/workflows/test.yml'
-      - '.github/workflows/ci_lib_ml.yml'
+      - '.github/workflows/lib-test.yml'
+      - '.github/workflows/ci-lib-ml.yml'
       - 'libs/ml/**'
   push:
     branches:
@@ -15,10 +15,10 @@ on:
 jobs:
   ci-lib-ml:
     uses:
-      ./.github/workflows/test.yml
+      ./.github/workflows/lib-test.yml
     with:
       working-directory: libs/ml
       requirement-file: libs/ml/poetry.lock
-      cov-flag: ml
+      project-flag: ml
     secrets: inherit
       

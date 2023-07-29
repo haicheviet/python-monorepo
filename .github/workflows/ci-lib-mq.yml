@@ -4,8 +4,8 @@ name: CI libs/mq
 on:
   pull_request:
     paths:
-      - '.github/workflows/test.yml'
-      - '.github/workflows/ci_lib_mq.yml'
+      - '.github/workflows/lib-test.yml'
+      - '.github/workflows/ci-lib-mq.yml'
       - 'libs/mq/**'
   push:
     branches:
@@ -15,10 +15,10 @@ on:
 jobs:
   ci-lib-mq:
     uses:
-      ./.github/workflows/test.yml
+      ./.github/workflows/lib-test.yml
     with:
       working-directory: libs/mq
       requirement-file: libs/mq/poetry.lock
-      cov-flag: mq
+      project-flag: mq
     secrets: inherit
       

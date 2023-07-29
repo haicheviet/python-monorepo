@@ -15,12 +15,6 @@ on:
         required: true
         type: string
         description: "File to hashed install dependency"
-      ci-timeout:
-        # To avoid being billed 360 minutes if a step does not terminate
-        # (we've seen the setup-python step below do so!)
-        description: "The timeout of the ci job. Default is 25min"
-        default: 25
-        type: number
 
 jobs:
   lint:
@@ -65,12 +59,10 @@ jobs:
       - uses: actions/checkout@v3
       - name: Log in to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-      - name: Build, tag, and push image to Amazon ECR
+      - name: Build, test and tag branch image to github docker registery
         env:
           TAG: ${{ github.sha }}
         run: |
-          # Build a docker container and
-          # push it to docker package ghcr
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/${{ inputs.project-flag }}
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
@@ -78,7 +70,7 @@ jobs:
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && TAG=$(echo $TAG | sed -e 's/^v//')
           [ "$TAG" == "main" ] && TAG=latest
 
-          bash scripts/build-push.sh
+          bash scripts/test-push.sh
       - uses: actions/cache@v3
         name: push coverage files
         with:

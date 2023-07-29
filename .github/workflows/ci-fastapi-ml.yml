@@ -1,0 +1,25 @@
+---
+name: CI services/fastapi-ml
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/service-test.yml'
+      - '.github/workflows/ci-fastapi-ml.yml'
+      - 'libs/*' # Dependency change
+      - 'services/fastapi-ml/*'
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allows to trigger the workflow manually in GitHub UI
+
+jobs:
+  ci-fastapi-ml:
+    uses:
+      ./.github/workflows/service-test.yml
+    with:
+      working-directory: services/fastapi-ml
+      requirement-file: services/fastapi-ml/poetry.lock
+      project-flag: fastapi-ml
+    secrets: inherit
+      

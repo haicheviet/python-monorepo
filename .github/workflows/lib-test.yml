@@ -7,7 +7,7 @@ on:
         required: true
         type: string
         description: "From which folder this pipeline executes"
-      cov-flag:
+      project-flag:
         required: true
         type: string
         description: "Flag for coverage report"
@@ -113,5 +113,5 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-          flags: ${{ inputs.cov-flag }}
+          flags: ${{ inputs.project-flag }}
           files: ${{ inputs.working-directory }}/coverage.xml

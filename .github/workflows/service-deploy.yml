@@ -1,0 +1,40 @@
+name: Deploy
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        required: true
+        type: string
+        description: "From which folder this pipeline executes"
+      project-flag:
+        required: true
+        type: string
+        description: "Flag for coverage report"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+      - name: Build, tag, and push image to github package
+        env:
+          TAG: ${{ github.sha }}
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/${{ inputs.project-flag }}
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          TAG=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && TAG=$(echo $TAG | sed -e 's/^v//')
+          [ "$TAG" == "main" ] && TAG=latest
+
+          bash scripts/build-push.sh

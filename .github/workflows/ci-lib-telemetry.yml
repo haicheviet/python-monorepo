@@ -4,8 +4,8 @@ name: CI libs/telemetry
 on:
   pull_request:
     paths:
-      - '.github/workflows/test.yml'
-      - '.github/workflows/ci_lib_telemetry.yml'
+      - '.github/workflows/lib-test.yml'
+      - '.github/workflows/ci-lib-telemetry.yml'
       - 'libs/telemetry/**'
   push:
     branches:
@@ -15,10 +15,10 @@ on:
 jobs:
   ci-lib-telemetry:
     uses:
-      ./.github/workflows/test.yml
+      ./.github/workflows/lib-test.yml
     with:
       working-directory: libs/telemetry
       requirement-file: libs/telemetry/poetry.lock
-      cov-flag: telemetry
+      project-flag: telemetry
     secrets: inherit
       
