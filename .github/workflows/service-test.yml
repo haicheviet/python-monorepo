@@ -61,7 +61,7 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
       - name: Extract branch name
         shell: bash
-        run: echo "branch=${${{ github.ref }}//\//\-}" >> $GITHUB_OUTPUT
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}//\//\-}" >> $GITHUB_OUTPUT
         id: extract_branch
       - run: docker version
       - name: Build, test and tag branch image to github docker registery
@@ -70,6 +70,7 @@ jobs:
         run: |
           DOCKER_IMAGE=ghcr.io/${{ github.repository_owner }}/${{ inputs.project-flag }}
           TAG=${{ steps.extract_branch.outputs.branch }}
+          echo $TAG $DOCKER_IMAGE
 
           bash scripts/test-push.sh
       - uses: actions/cache@v3
