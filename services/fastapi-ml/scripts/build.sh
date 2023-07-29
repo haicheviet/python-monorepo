@@ -17,7 +17,7 @@ fi
 
 
 # Build the compile stage:
-docker build --file Dockerfile \
+docker buildx build --file Dockerfile \
        --target compile-image \
        --label git-commit=$CI_COMMIT_SHORT_SHA \
        --build-arg INSTALL_TEST="$INSTALL_TEST" \
