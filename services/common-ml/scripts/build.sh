@@ -22,8 +22,6 @@ docker buildx build --file Dockerfile \
        --build-arg INSTALL_TEST="$INSTALL_TEST" \
        --build-arg BUILDKIT_INLINE_CACHE=1 \
        --build-context telemetry=../../libs/telemetry \
-       --build-context ml=../../libs/ml \
-       --build-context mq=../../libs/mq \
        --cache-from $DOCKER_IMAGE:compile-stage-$TAG_LATEST \
        --tag $DOCKER_IMAGE:compile-stage-$TAG .
 
@@ -35,8 +33,6 @@ docker buildx build --file Dockerfile \
        --build-arg INSTALL_TEST="$INSTALL_TEST" \
        --build-arg BUILDKIT_INLINE_CACHE=1 \
        --build-context telemetry=../../libs/telemetry \
-       --build-context ml=../../libs/ml \
-       --build-context mq=../../libs/mq \
        --cache-from $DOCKER_IMAGE:compile-stage-$TAG \
        --cache-from $DOCKER_IMAGE:$TAG \
        --tag $DOCKER_IMAGE:$TAG .

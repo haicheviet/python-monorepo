@@ -1,0 +1,25 @@
+---
+name: CI services/common-ml
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/service-test.yml'
+      - '.github/workflows/ci-common-ml.yml'
+      - 'libs/telemetry/**' # Dependency change
+      - 'services/common-ml/**'
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allows to trigger the workflow manually in GitHub UI
+
+jobs:
+  ci-common-ml:
+    uses:
+      ./.github/workflows/service-test.yml
+    with:
+      working-directory: services/common-ml
+      requirement-file: services/common-ml/poetry.lock
+      project-flag: common-ml
+    secrets: inherit
+      
