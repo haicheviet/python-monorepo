@@ -3,9 +3,9 @@
 
 | Package      | Status | Coverage Page |
 |------------- | ------ | ------------- |
-|[libs/ml](https://github.com/haicheviet/python-monorepo/tree/main/libs/ml)| [![CI libs/ml](https://github.com/haicheviet/python-monorepo/actions/workflows/ci_lib_ml.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci_lib_ml.yml) | [ml.coverage](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Fml%2Fml) |
-|[libs/mq](https://github.com/haicheviet/python-monorepo/tree/main/libs/mq)| [![CI libs/mq](https://github.com/haicheviet/python-monorepo/actions/workflows/ci_lib_mq.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci_lib_ml.yml) | [mq.coverage](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Fmq%2Fmq) |
-|[libs/telemetry](https://github.com/haicheviet/python-monorepo/tree/main/libs/mq)| [![CI libs/telemetry](https://github.com/haicheviet/python-monorepo/actions/workflows/ci_lib_telemetry.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci_lib_ml.yml) | [telemetry.coverage](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Ftelemetry%2Ftelemetry) |
+|[libs/ml](https://github.com/haicheviet/python-monorepo/tree/main/libs/ml)| [![CI libs/ml](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-ml.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-ml.yml) | [ml.coverage](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Fml%2Fml) |
+|[libs/mq](https://github.com/haicheviet/python-monorepo/tree/main/libs/mq)| [![CI libs/mq](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-mq.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-mq.yml) | [mq.coverage](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Fmq%2Fmq) |
+|[libs/telemetry](https://github.com/haicheviet/python-monorepo/tree/main/libs/mq)| [![CI libs/telemetry](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-telemetry.yml/badge.svg)](https://github.com/haicheviet/python-monorepo/actions/workflows/ci-lib-telemetry.yml) | [telemetry.coverage](https://app.codecov.io/gh/haicheviet/python-monorepo/tree/main/libs%2Ftelemetry%2Ftelemetry) |
 
 # Python Monorepo
 
