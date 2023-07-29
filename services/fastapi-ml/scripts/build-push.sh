@@ -6,4 +6,6 @@ TAG=${TAG:=latest}
 
 sh ./scripts/build.sh
 
+
+docker push $DOCKER_IMAGE:compile-stage-$TAG
 docker push $DOCKER_IMAGE:$TAG

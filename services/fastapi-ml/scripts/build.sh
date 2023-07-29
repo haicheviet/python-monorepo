@@ -1,7 +1,7 @@
 # Exit in case of error
 set -e
 
-DOCKER_IMAGE=${DOCKER_IMAGE:=latest}
+DOCKER_IMAGE=${DOCKER_IMAGE}
 TAG=${TAG:=latest}
 INSTALL_TEST=${INSTALL_TEST:=false}
 
