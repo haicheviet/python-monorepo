@@ -38,4 +38,4 @@ docker build --file Dockerfile \
        --build-context mq=../../libs/mq \
        --cache-from $DOCKER_IMAGE:compile-stage-$TAG \
        --cache-from $DOCKER_IMAGE:$TAG \
-       --tag $DOCKER_IMAGE:$TAG .
+       --tag $DOCKER_IMAGE:$TAG -f Dockerfile .
