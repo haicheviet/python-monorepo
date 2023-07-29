@@ -19,12 +19,12 @@ This is an example of how python structure in monorepo fashion, with the goal of
 
 - `Good practice`: A monorepo requires teams to work with each other. By merging code only with a MR, teams review each other’s code which breaks silos and improves code quality.
 
- - `Tooling`: for handling builds with shared libraries, CI-CD and Coverage Page.
+ - `Tooling required`: for handling builds with shared libraries, CI-CD and Coverage Page.
 
 
 # Note
 
-This project drew significant inspiratd.ion from [dermidgen](https://github.com/dermidgen/python-monorepo). However, I discovered that the existing methodology is outdated and doesn't support the use of Poetry within Docker, which is a major let down in the Python ecosystem. Here are the improvements I plan to implement compared to the original repository:
+This project drew significant inspiration from [dermidgen](https://github.com/dermidgen/python-monorepo). However, I discovered that the existing methodology is outdated and doesn't support the use of Poetry within Docker, which is a major let down in the Python ecosystem. Here are the improvements I plan to implement compared to the original repository:
 
 - Poetry playwell with docker container.
 - Automated formatting and linting for the Python project.
