@@ -6,6 +6,7 @@ TAG=${TAG:=latest}
 INSTALL_TEST=${INSTALL_TEST:=false}
 
 # Get latest image to reuse compile stage
+docker pull $DOCKER_IMAGE:compile-stage-$TAG || true
 if [ "$(docker images -q $DOCKER_IMAGE:compile-stage-$TAG 2>/dev/null)" != "" ]; then
        TAG_LATEST=$TAG
        echo "Get exist img"
