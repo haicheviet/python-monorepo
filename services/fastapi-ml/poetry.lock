@@ -448,12 +448,12 @@ files = [
 
 [[package]]
 name = "ml"
-version = "0.0.0.post6.dev0+b21d1b3"
+version = "0"
 description = ""
 optional = false
 python-versions = "^3.8.1"
 files = []
-develop = false
+develop = true
 
 [package.dependencies]
 telemetry = {path = "../telemetry"}
@@ -482,12 +482,12 @@ tests = ["pytest (>=4.6)"]
 
 [[package]]
 name = "mq"
-version = "0.0.0.post6.dev0+b21d1b3"
+version = "0"
 description = ""
 optional = false
 python-versions = "^3.8.1"
 files = []
-develop = false
+develop = true
 
 [package.dependencies]
 pika = "1.3.2"
@@ -829,7 +829,7 @@ mpmath = ">=0.19"
 
 [[package]]
 name = "telemetry"
-version = "0.0.0.post6.dev0+b21d1b3"
+version = "0"
 description = ""
 optional = false
 python-versions = "^3.8.1"
@@ -1028,4 +1028,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8.1"
-content-hash = "63a2978688501da63da7b7ccac52f2f612f74717e51d3bb03f5759949dbb97b5"
+content-hash = "36b0a3f323eb9334eae3b4622512b39eb34dc8748fd6b544df764ff2ecea1d40"

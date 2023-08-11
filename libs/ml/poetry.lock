@@ -568,12 +568,12 @@ mpmath = ">=0.19"
 
 [[package]]
 name = "telemetry"
-version = "0.0.0.post6.dev0+b21d1b3"
+version = "0"
 description = ""
 optional = false
 python-versions = "^3.8.1"
 files = []
-develop = false
+develop = true
 
 [package.dependencies]
 opentelemetry-api = "1.19.0"
@@ -749,4 +749,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8.1"
-content-hash = "90bb0845f47d34f1bd0927c02cd6fff675deadcab3cb734f7135b2ffeaeb1bb6"
+content-hash = "c2ce5fdf85707cba90a621fd23af6847b7060ed7bd6d59d859463d337903d2f5"
