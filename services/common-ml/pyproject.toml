@@ -6,12 +6,7 @@ authors = ["Hai Che <cheviethai123@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
-telemetry = {path = "../../libs/telemetry"}
-
-
-[tool.poetry.dev-dependencies]
 telemetry = {path = "../../libs/telemetry", develop = true}
-
 
 ### pytest setup ###
 [tool.poetry.group.test]

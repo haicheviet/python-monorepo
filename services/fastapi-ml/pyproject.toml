@@ -9,13 +9,9 @@ python = "^3.8.1"
 torch = {version = "2.0.1", source="torchcpu"}
 fastapi = "0.100.0"
 uvicorn = "0.21.1"
-ml = {path = "../../libs/ml"}
-mq = {path = "../../libs/mq"}
-
-
-[tool.poetry.dev-dependencies]
 ml = {path = "../../libs/ml", develop = true}
 mq = {path = "../../libs/mq", develop = true}
+
 
 [[tool.poetry.source]]
 name = "torchcpu"

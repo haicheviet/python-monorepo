@@ -27,6 +27,7 @@ RUN curl -sSL https://install.python-poetry.org | POETRY_VERSION=1.5.1 POETRY_HO
 # Install dependency
 ARG INSTALL_TEST=false
 COPY poetry.lock pyproject.toml ./
+RUN sed -i 's/develop = true/develop = false/g' pyproject.toml poetry.lock # Change develop to build deployment
 COPY --from=telemetry . ../../libs/telemetry
 RUN . /opt/venv/bin/activate && if [ $INSTALL_TEST != 'false' ] ; then poetry install --no-root --with test ; \
     else poetry install --no-root --only main ; fi

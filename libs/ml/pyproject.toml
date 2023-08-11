@@ -7,10 +7,8 @@ authors = ["Hai Che <cheviethai123@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.8.1"
 torch = {version = "2.0.1", source="torchcpu"}
-telemetry = {path = "../telemetry"}
+telemetry = {path = "../telemetry", develop = true}
 
-[tool.poetry.dev-dependencies]
-telemetry = {path = "../telemetry", develop = true} # for developing environment
 
 [[tool.poetry.source]]
 name = "torchcpu"
